@@ -1,13 +1,19 @@
 <h1>Listing Albums</h1>
 
-<p>No Albums Available</p>
+<tr>
 
-<ul>
+  <ul>
   <% @albums.each do |album| %>
+    <%  if album.nil? == true  %>
+    <p> <%= 'No Albums Available' %> </p>
+    <% else %>
   <li class="album"><%= album.title %></li>
   <ul>
     <li class="artist"><%= album.artist %> </li>
-  <li class="year"><%= album.year %></li>
-</ul>
-<% end %>
-</ul>
+    <li class="year"><%= album.year %></li>
+  </ul>
+  <% end %>
+  <% end %>
+  </ul>
+</tr>
+
