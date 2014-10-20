@@ -1,19 +1,27 @@
 <h1>Listing Albums</h1>
-
-
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, id: name %>
+<% end %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Artist</th>
+    <th>Year</th>
+    <th></th>
+  </tr>
   <% if @albums.empty? %>
     <p> <%= 'No Albums Available' %> </p>
     <% else %>
-<ul>
-  <% @albums.each do |album| %>
-    <li class="album"><%= album.title %></li>
-    <ul>
-      <li class="artist"><%= album.artist %> </li>
-      <li class="year"><%= album.year %></li>
-    </ul>
+      <% @albums.each do |album| %>
+        <tr>
+          <td class="album"><%= album.title %></td>
+          <td class="artist"><%= album.artist %> </td>
+          <td class="year"><%= album.year %></td>
+          <td class="show"><%= link_to "Show", album_path(album)  %></td>
+          <td class="delete"><%= link_to "Delete", album, method: :delete %></td>
+        </tr>
+      <% end %>
   <% end %>
-  <% end %>
-</ul>
-
-<h2>Add an Album</h2>
+</table><br>
+<%= link_to "Add an Album", new_album_path %>
 <h2>Update an Album </h2>

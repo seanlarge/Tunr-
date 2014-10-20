@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_filter :set_album, only: [:show, :edit, :update]
+  before_filter :set_album, only: [:show, :edit, :update, :destroy]
   def index
     @albums = Album.all
   end
@@ -18,7 +18,6 @@ class AlbumsController < ApplicationController
   end
 
   def show
-
   end
 
   def edit
@@ -29,6 +28,14 @@ class AlbumsController < ApplicationController
       redirect_to @album, notice: "Successfully Updated"
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if @album.delete
+      redirect_to albums_path, notice: "Deleted!"
+    else
+      render albums_path, notice: "Fail!"
     end
   end
 

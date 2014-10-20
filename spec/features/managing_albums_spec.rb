@@ -2,10 +2,10 @@ require 'rails_helper'
 
 def create_astrolounge
   Album.create!(
-      title: 'Astrolounge',
-      artist: 'Smash Mouth',
-      year: '1999'
-      )
+    title: 'Astrolounge',
+    artist: 'Smash Mouth',
+    year: '1999'
+  )
 end
 
 feature "Manage Albums" do
@@ -45,6 +45,23 @@ feature "Manage Albums" do
 
     expect(current_path).to eq(album_path(album))
     expect(find('#notice')).to have_content(/updated/i)
-    end
-end
+  end
+  scenario "Show an Album" do
+    album = create_astrolounge
+    visit albums_path
+    click_on 'Show'
+    expect(current_path).to eq(album_path(album.id))
+    expect(page.find('.title')).to have_content(/Astrolounge/)
+    expect(page.find('.artist')).to have_content(/Smash Mouth/)
+    expect(page.find('.year')).to have_content(/1999/)
+  end
 
+  scenario "Remove and Album" do
+    album = create_astrolounge
+    visit albums_path
+    click_on 'Delete'
+    expect(page).not_to have_content(/Astrolounge/i)
+    expect(find('#notice')).to have_content(/Deleted!/i)
+  end
+
+end
