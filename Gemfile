@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
+# For active model has_secure_password
+gem 'bcrypt'
 
+gem 'pry', group: :development
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
