@@ -15,7 +15,6 @@
       <% @albums.each do |album| %>
         <tr>
           <td class="album"><%= album.title %></td>
-          <td class="artist"><%= album.artist %> </td>
           <td class="year"><%= album.year %></td>
           <td class="show"><%= link_to "Show", album_path(album)  %></td>
           <td class="delete"><%= link_to "Delete", album, method: :delete %></td>
