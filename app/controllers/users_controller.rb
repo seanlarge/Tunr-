@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
     def index
       @users = User.all
     end
@@ -11,7 +10,8 @@ class UsersController < ApplicationController
     def create
       @user = User.new(users_params)
       if @user.save
-         redirect_to @user
+        sign_in @user
+        redirect_to @user
       else
          render :new
       end
