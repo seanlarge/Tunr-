@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :require_signin
     def index
       @users = User.all
     end
@@ -12,7 +11,7 @@ class UsersController < ApplicationController
       @user = User.new(users_params)
       if @user.save
         sign_in @user
-         redirect_to @user
+        redirect_to @user
       else
          render :new
       end
