@@ -1,2 +1,24 @@
-<h1>Songs#index</h1>
-<p>Find me in app/views/songs/index.html.erb</p>
+<h1>Add Some Songs!</h1>
+
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @song.each do |band| %>
+  <tr>
+    <td><%= song.title %></td>
+    <td><%= link_to "Show", song %></td>
+    <td><%= link_to "Edit", edit_songs_path(song) %></td>
+    <td><%= link_to "Remove", song, method: :delete, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br>
+
+<%= link_to "New Song", new_songs_path %>
