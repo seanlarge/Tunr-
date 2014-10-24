@@ -16,10 +16,11 @@ class SongsController < ApplicationController
   end
 
   def destroy
+    @song = Song.find(params[:id])
     if @song.delete
-      redirect_to albums_path, notice: "Deleted!"
+      redirect_to songs_path, notice: "Deleted!"
     else
-      render albums_path, notice: "Error, please try again."
+      render songs_path, notice: "Error, please try again."
     end
   end
 
