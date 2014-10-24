@@ -33,18 +33,18 @@ class SongsController < ApplicationController
   end
 
   def create
-      @song = Song.new(band_params)
-      if @song.save
-          redirect_to @Song, notice: "Song Created!"
-      else
-          render :new
-      end
+    @song = Song.new(band_params)
+    if @song.save
+      redirect_to @Song, notice: "Song Created!"
+    else
+      render :new
     end
+  end
 
   private
 
   def band_params
     params.require(:band).permit(:title)
   end
-end
+
 end
