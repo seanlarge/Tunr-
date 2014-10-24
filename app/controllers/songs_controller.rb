@@ -1,10 +1,10 @@
 class SongsController < ApplicationController
+  before_filter :find_song, only: [:edit, :update, :show, :destroy]
   def new
     @song = Song.new
   end
 
   def edit
-    @song = Song.find(params[:id])
   end
 
   def index
@@ -12,11 +12,9 @@ class SongsController < ApplicationController
   end
 
   def show
-    @song = Song.find(params[:id])
   end
 
   def destroy
-    @song = Song.find(params[:id])
     if @song.delete
       redirect_to songs_path, notice: "Deleted!"
     else
@@ -25,7 +23,6 @@ class SongsController < ApplicationController
   end
 
   def update
-    @song = Song.find(params[:id])
     if @song.update(song_params)
       redirect_to @song, notice: "Successfully Updated"
     else
@@ -43,6 +40,10 @@ class SongsController < ApplicationController
   end
 
   private
+
+  def find_song
+    @song = Song.find(params[:id])
+  end
 
   def song_params
     params.require(:song).permit(:title)
