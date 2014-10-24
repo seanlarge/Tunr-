@@ -1,0 +1,8 @@
+<h1>Edit Bands</h1>
+
+<%= form_for @band do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+<%= f.submit "Update Band" %>
+<% end %>

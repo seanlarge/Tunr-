@@ -1,0 +1,12 @@
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, id: name %>
+<% end %>
+
+<% Band.column_names.each do |column_name| %>
+   <p class=<%= column_name %> >
+      <strong><%= column_name %>:</strong>
+      <%= @band.send(column_name) %>
+   </p>
+<% end %>
+
+<%= link_to "Home", bands_path %>
