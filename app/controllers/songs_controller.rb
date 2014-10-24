@@ -24,7 +24,7 @@ class SongsController < ApplicationController
   end
 
   def update
-    @song = song.find(params[:id])
+    @song = Song.find(params[:id])
     if @song.update(song_params)
       redirect_to @song, notice: "Successfully Updated"
     else
@@ -35,7 +35,7 @@ class SongsController < ApplicationController
   def create
     @song = Song.new(band_params)
     if @song.save
-      redirect_to @Song, notice: "Song Created!"
+      redirect_to @song, notice: "Song Created!"
     else
       render :new
     end
@@ -43,8 +43,8 @@ class SongsController < ApplicationController
 
   private
 
-  def band_params
-    params.require(:band).permit(:title)
+  def song_params
+    params.require(:song).permit(:title)
   end
 
 end

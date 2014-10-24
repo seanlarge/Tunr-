@@ -1,2 +1,7 @@
-<h1>Bands#new</h1>
-<p>Find me in app/views/bands/new.html.erb</p>
+<h1>Add a Band</h1>
+<%= form_for @band do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+<%= f.submit "Create Band" %>
+<% end %>
