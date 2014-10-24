@@ -1,4 +1,5 @@
 class BandsController < ApplicationController
+  before_filter :find_band, only: [:edit, :update, :show, :destroy]
   def new
     @band = Band.new
   end
@@ -13,11 +14,9 @@ class BandsController < ApplicationController
   end
 
   def edit
-    @band = Band.find(params[:id])
   end
 
   def update
-    @band = Band.find(params[:id])
     if @band.update(band_params)
       redirect_to @band, notice: "Successfully Updated"
     else
@@ -26,7 +25,6 @@ class BandsController < ApplicationController
   end
 
   def show
-    @band = Band.find(params[:id])
   end
 
   def index
@@ -34,7 +32,6 @@ class BandsController < ApplicationController
   end
 
   def destroy
-    @band = Band.find(params[:id])
     if @band.delete
       redirect_to bands_path, notice: "Deleted!"
     else
@@ -43,6 +40,10 @@ class BandsController < ApplicationController
   end
 
   private
+
+  def find_band
+    @band = Band.find(params[:id])
+  end
 
   def band_params
     params.require(:band).permit(:title)
