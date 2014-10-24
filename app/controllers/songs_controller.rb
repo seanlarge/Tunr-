@@ -16,15 +16,16 @@ class SongsController < ApplicationController
   end
 
   def destroy
+    @song = Song.find(params[:id])
     if @song.delete
-      redirect_to albums_path, notice: "Deleted!"
+      redirect_to songs_path, notice: "Deleted!"
     else
-      render albums_path, notice: "Error, please try again."
+      render songs_path, notice: "Error, please try again."
     end
   end
 
   def update
-    @song = song.find(params[:id])
+    @song = Song.find(params[:id])
     if @song.update(song_params)
       redirect_to @song, notice: "Successfully Updated"
     else
@@ -33,18 +34,18 @@ class SongsController < ApplicationController
   end
 
   def create
-      @song = Song.new(band_params)
-      if @song.save
-          redirect_to @Song, notice: "Song Created!"
-      else
-          render :new
-      end
+    @song = Song.new(song_params)
+    if @song.save
+      redirect_to @song, notice: "Song Created!"
+    else
+      render :new
     end
+  end
 
   private
 
-  def band_params
-    params.require(:band).permit(:title)
+  def song_params
+    params.require(:song).permit(:title)
   end
-end
+
 end
